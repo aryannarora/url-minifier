@@ -27,7 +27,7 @@ const URI = require('./models/antURI.model')
 
 const minify = require('./encodeDecode.service')
 
-const port = process.env.port || 3000
+const port = process.env.PORT || 3000
 
 app.post('/minify', function(req, res) {
     const longURI = req.body.longURI
@@ -36,8 +36,8 @@ app.post('/minify', function(req, res) {
     URI.findOne({longUrl: longURI}).exec()
         .then( doc => {
             if (doc) {
-                antUrl = `${process.env.host}${port}/${minify.encode(doc._id)}`
-                res.status(200).send({'antUrl':antUrl})
+                antUrl = `${process.env.host}/${minify.encode(doc._id)}`
+                res.status(200).send({'antURI':antUrl})
             } else {
                 const newUrl = URI({
                     longUrl: longURI
@@ -48,8 +48,8 @@ app.post('/minify', function(req, res) {
                       res.status(503).send(err);
                     }            
                     // construct the short URL
-                    antUrl = `${process.env.host}${port}/${minify.encode(newUrl._id)}`            
-                    res.status(201).send({'antUrl': antUrl})
+                    antUrl = `${process.env.host}/${minify.encode(newUrl._id)}`            
+                    res.status(201).send({'antURI': antUrl})
                 })
             }
         })
@@ -64,12 +64,16 @@ app.get('/:antUrl', function(req, res) {
     URI.findOne({_id: id}).exec()
         .then( doc => {
             if (doc) {
-                res.status(200).send(doc.longUrl)                
+                res.redirect(doc.longUrl)                
             } else res.status(404).send(`URL not already minified.`)
         })
         .catch( e => {
             res.status(503).send(e)
         }) 
+})
+
+app.get('/', function(req, res) {
+    res.status(200).send('Minifier says hello')
 })
 
 // Start Server
