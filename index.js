@@ -37,7 +37,7 @@ app.post('/minify', function(req, res) {
         .then( doc => {
             if (doc) {
                 antUrl = `${process.env.host}/${minify.encode(doc._id)}`
-                res.status(200).send({'antUrl':antUrl})
+                res.status(200).send({'antURI':antUrl})
             } else {
                 const newUrl = URI({
                     longUrl: longURI
@@ -49,7 +49,7 @@ app.post('/minify', function(req, res) {
                     }            
                     // construct the short URL
                     antUrl = `${process.env.host}/${minify.encode(newUrl._id)}`            
-                    res.status(201).send({'antUrl': antUrl})
+                    res.status(201).send({'antURI': antUrl})
                 })
             }
         })
@@ -64,7 +64,7 @@ app.get('/:antUrl', function(req, res) {
     URI.findOne({_id: id}).exec()
         .then( doc => {
             if (doc) {
-                res.status(200).send(doc.longUrl)                
+                res.status(200).send({'longURI': doc.longUrl})                
             } else res.status(404).send(`URL not already minified.`)
         })
         .catch( e => {
