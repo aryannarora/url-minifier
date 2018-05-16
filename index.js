@@ -29,9 +29,8 @@ const minify = require('./encodeDecode.service')
 
 const port = process.env.PORT || 3000
 
-app.post('/minify', function(req, res) {
-    const longURI = req.body.longURI
-    console.log(longURI)
+app.get('/minify/:longURI', function(req, res) {
+    const longURI = req.params.longURI
     
     URI.findOne({longUrl: longURI}).exec()
         .then( doc => {
