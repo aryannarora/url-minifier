@@ -72,6 +72,10 @@ app.get('/:antUrl', function(req, res) {
         }) 
 })
 
+app.get('/', function(req, res) {
+    res.status(200).send('Minifier says hello')
+})
+
 // Start Server
 app.listen(port, function() {
     console.log(`Server spinning at port ${port}`)
