@@ -6,3 +6,7 @@ An API for url shortening to be directly used in your projects.
 ### For Shortening of URL
 
 Make a **POST** request at `/minify` endpoint with parameter **longURI** in body. You'll receive a JSON Object. Use key `antURI` to get the minified URL.
+
+### Example
+
+Visit : https://mini-fier.herokuapp.com/3L  OR https://mini-fier.herokuapp.com/3M
