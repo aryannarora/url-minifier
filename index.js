@@ -27,7 +27,7 @@ const URI = require('./models/antURI.model')
 
 const minify = require('./encodeDecode.service')
 
-const port = process.env.port || 3000
+const port = process.env.PORT || 3000
 
 app.post('/minify', function(req, res) {
     const longURI = req.body.longURI
