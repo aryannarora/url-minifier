@@ -1,0 +1,27 @@
+{
+  "name": "uri-minifier",
+  "version": "1.0.0",
+  "description": "A URI Shortner REST Api built with node, express and mongoose.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "URI-Shortner",
+    "URI",
+    "URL",
+    "URI-Minifier",
+    "API"
+  ],
+  "author": "AntMan",
+  "license": "WTFPL",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}
