@@ -64,7 +64,7 @@ app.get('/:antUrl', function(req, res) {
     URI.findOne({_id: id}).exec()
         .then( doc => {
             if (doc) {
-                res.status(200).send({'longURI': doc.longUrl})                
+                res.redirect(doc.longUrl)                
             } else res.status(404).send(`URL not already minified.`)
         })
         .catch( e => {
